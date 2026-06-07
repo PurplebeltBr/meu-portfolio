@@ -72,10 +72,10 @@ a:hover {
 .hero__text {
   text-shadow: 0 0 11px;
   font-size: 1.2rem;
-  letter-spacing: 1rem; /*efeito de espaçamento entre as letras*/
+  letter-spacing: 0.5rem; /*efeito de espaçamento entre as letras*/
   text-transform: uppercase; /*poe tudo em letra maiúscula*/
   text-align: left;
-  margin-left: 5rem;
+  margin-left:0;
 }
 
 .logo {
@@ -87,7 +87,9 @@ a:hover {
 .section__text {
   text-align: center;
   text-shadow: 0 0 2px;
-  margin:80px;
+  font-size: 1.2rem;
+  line-height: 1.75;
+  margin: 40px 20px; /* Reduzido de 80px para 40px nas laterais */
 }
 
 .section__text {
@@ -111,13 +113,12 @@ a:hover {
 .netflix-slider-title {
     font-size: 20px;
     color: var(--color-white);
-     text-shadow: 0 0 1px;
+    text-shadow: 0 0 1px;
     font-weight: bold;
     margin-bottom: 10px;
     cursor: pointer;
     transition: color 0.3s;
-    width:9vw;
-    
+    width: auto; /* Alterado de 9vw para auto para o título não sumir/esmagar */
 }
 
 .netflix-slider-title:hover {
@@ -240,4 +241,47 @@ footer {
   margin-top: 1rem;
   padding: 2rem;
   text-align: center;
+}
+
+
+/* Configurações exclusivas para Celulares e Tablets */
+@media (max-width: 768px) {
+  
+  .hero__foreground {
+    flex-direction: column-reverse; /* No celular, a logo fica no topo e o texto embaixo */
+    text-align: center;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 5vh;
+  }
+
+  .hero__title {
+    font-size: 3rem; /* Diminui o tamanho da fonte do nome para caber na tela */
+    line-height: 1.2;
+  }
+
+  .hero__text {
+    text-align: center;
+    font-size: 0.9rem;
+    letter-spacing: 0.3rem;
+    margin-top: 10px;
+  }
+
+  .logo {
+    max-width: 40%; /* Dá um pouco mais de destaque para a logo no celular */
+  }
+
+  .section__text {
+    margin: 30px 15px; /* Deixa o texto com margens confortáveis no celular */
+    font-size: 1rem;
+  }
+  
+  /* Esconde as setas do carrossel no celular, já que lá as pessoas usam o dedo para arrastar */
+  .slider-arrow {
+    display: none;
+  }
+  
+  .netflix-slider-container {
+    padding: 0 20px;
+  }
 }

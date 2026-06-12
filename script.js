@@ -6,9 +6,19 @@ function scrollSlider(direction) {
   });
 }
 
-// Captura o movimento do mouse na tela inteira
+let ticking = false;
+
 document.addEventListener('mousemove', (e) => {
-    // Define as variáveis --x e --y no elemento body com a posição atual do cursor
-    document.body.style.setProperty('--x', e.clientX + 'px');
-    document.body.style.setProperty('--y', e.clientY + 'px');
+  if (!ticking) {
+    // Bloqueia novos disparos até que este frame seja desenhado
+    ticking = true; 
+    
+    window.requestAnimationFrame(() => {
+      document.body.style.setProperty('--x', e.clientX + 'px');
+      document.body.style.setProperty('--y', e.clientY + 'px');
+      
+      // Libera o próximo disparo APENAS depois que o frame rodou
+      ticking = false; 
+    });
+  }
 });

@@ -282,10 +282,12 @@ a:hover {
   text-align: center;
 }
 
-.devicon-linkedin-plain:hover{
-  color: rgb(228, 26, 26);
-  transition: 0.2s;
-} 
+.devicon-github-original{
+font-size: 1.6rem; /* <--- Aumente este valor aqui para o tamanho que desejar */
+  margin-left: 6px;
+  vertical-align: middle;
+  transition: transform 0.2s ease;
+}
 
 /* Container que junta as duas metades */
 .split-section {

@@ -5,6 +5,7 @@
     sans-serif;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth; /*suavisa transição da ancora*/
 }
 
 :root {
@@ -23,6 +24,27 @@
 body {
   background-color: var(--color-background);
   color: var(--color-white);
+  min-height: 100vh;
+  position: relative;   
+}
+
+/*camada flutuante da lanterna */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999; /* Fica por cima de ABSOLUTAMENTE tudo */
+  pointer-events: none; /* O SEGREDO: o mouse ignora essa camada, permitindo clicar nos links e botões abaixo */
+  
+  /* O efeito da lanterna fica aqui */
+  background-image: radial-gradient(
+    600px circle at var(--x, 0px) var(--y, 0px), 
+    rgba(20, 116, 180, 0.12), /* Ajustei para 0.12 para ficar sutil sobre os textos */
+    transparent 80%
+  );
 }
 
 a {
@@ -112,7 +134,7 @@ a:hover {
   text-shadow: 0 0 2px;
   font-size: 1.2rem;
   line-height: 1.75;
-  margin: 40px 20px; /* Reduzido de 80px para 40px nas laterais */
+  margin: auto; /* Reduzido de 80px para 40px nas laterais */
 }
 
 .center{
@@ -233,7 +255,7 @@ a:hover {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
+    background:var(--color-background);
     color: white;
     border: none;
     font-size: 30px;
@@ -254,15 +276,133 @@ a:hover {
 .arrow-left { left: 0; border-radius: 0 4px 4px 0; }
 .arrow-right { right: 0; border-radius: 4px 0 0 4px; }
 
-footer {
+.footer {
   margin-top: 1rem;
   padding: 2rem;
   text-align: center;
 }
 
+.devicon-linkedin-plain:hover{
+  color: rgb(228, 26, 26);
+  transition: 0.2s;
+} 
+
+/* Container que junta as duas metades */
+.split-section {
+  display: flex;
+  min-height: 150vh; /* Garante que a seção seja grande o suficiente para rolar */
+  padding: 80px 4%;
+  gap: 5%;
+  background-color: var(--color-background);
+}
+
+/* Configuração do Lado Esquerdo (O Segredo está aqui!) */
+.split-section__left {
+  flex: 1; /* Ocupa metade do espaço disponível */
+  height: calc(100vh - 160px); /* Ocupa a altura da tela descontando os paddings */
+  position: -webkit-sticky;
+  position: sticky;
+  top: 80px; /* Distância do topo da tela onde ele vai grudar e travar */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centraliza o texto verticalmente enquanto trava */
+}
+
+/* Conteúdo interno do lado esquerdo */
+.left-subtitle {
+  color: var(--color-blue);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.left-title {
+  font-size: 3.5rem;
+  font-weight: 400;
+  color: var(--color-white);
+  margin-bottom: 40px;
+}
+
+/* Estilização do Menu estilo "Código/Função" */
+.matrix-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.menu-link {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.4) !important; /* Começa meio apagado */
+  transition: all 0.3s ease;
+  font-family: monospace; /* Estilo código de cientista de dados */
+}
+
+.menu-link:hover {
+  color: #00c9ff !important; /* Brilha no tom de ciano do seu tema */
+  transform: translateX(10px); /* Dá um leve empurrãozinho para a direita */
+}
+
+/* Configuração do Lado Direito (O bloco que se mexe) */
+.split-section__right {
+  max-width:50%;
+  overflow: hidden;
+  flex: 1; /* Ocupa a outra metade do espaço */
+  display: flex;
+  flex-direction: column;
+  gap: 120px; /* Espaço gigante entre os blocos para o scroll fazer sentido */
+}
+
+.scroll-content-block {
+  min-height: 40vh; /* Faz cada bloco ter uma presença forte na tela */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.block-title {
+  font-size: 1.8rem;
+  color: #00c9ff;
+  margin-bottom: 20px;
+}
+
+/* Alinhamento do texto para o lado direito ficar limpo */
+.split-section__right .section__text {
+  text-align: left;
+  margin: 0;
+}
 
 /* Configurações exclusivas para Celulares e Tablets */
 @media (max-width: 768px) {
+
+  body {
+    background-image: none; /* Desativa a lanterna no celular */
+  }
+
+ .split-section {
+  flex-direction: column; /* Transforma as colunas em linhas, uma embaixo da outra */
+  gap: 50px;
+}
+
+.split-section__left {
+  position: static; /* Desativa o efeito de travar na tela no celular */
+  height: auto;
+  text-align: center;
+}
+
+.left-title {
+  font-size: 2.5rem;
+}
+
+.matrix-menu {
+  align-items: center; /* Centraliza os links no mobile */
+}
+
+.split-section__right {
+  gap: 60px;
+  max-width: 100%;
+}
   
   .hero__foreground {
     flex-direction: column-reverse; /* No celular, a logo fica no topo e o texto embaixo */
@@ -310,3 +450,4 @@ footer {
     padding: 0 20px;
   }
 }
+

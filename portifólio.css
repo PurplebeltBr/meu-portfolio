@@ -141,6 +141,10 @@ a:hover {
   margin:5%
 }
 
+.split-section__right{
+  padding-top:80px;
+}
+
 /* Container Principal da Sessão */
 .netflix-slider-container {
     position: relative;
@@ -200,7 +204,6 @@ a:hover {
     padding-right: 15px; 
 }
 
-/* REMOVIDO: O código que pausava no hover foi retirado para o looping NUNCA parar */
 
 /* Mágica do Loop Infinito */
 @keyframes scrollInfinito {
@@ -259,10 +262,7 @@ a:hover {
     min-width: 250px;
     max-width: 250px;
     height: 150px;
-    background-image: linear-gradient(
-    rgba(0, 0, 0, 0.7),
-    var(--color-background)
-   );
+    background-image: var(--degrade-name);
     border-radius: 10px;
     cursor: pointer;
     position: relative;
@@ -302,7 +302,7 @@ a:hover {
 /* Textos e Tags internas do Card */
 .project-info {
     position: relative;
-    z-index: 2;
+    z-index: 10;
 }
 
 .project-tag {
@@ -320,8 +320,8 @@ a:hover {
     font-size: 16px;
     font-weight: bold;
     margin: 0 0 5px 0;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
-    color: #ffffff;
+    text-shadow: 1px 1px 4px #ffffff;
+    color:rgb(204, 85, 0);
 }
 
 /* Botões de Navegação (Setas Laterais) */

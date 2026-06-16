@@ -1,49 +1,24 @@
+// Controle de navegação por setas (Exclusivo para o carrossel de Projetos)
 function scrollSlider(direction) {
-  var slider = document.getElementById('meuCarrossel');
-  slider.scrollBy({
-    left: direction * 300,
-    behavior: 'smooth'
-  });
-}
-
-let ticking = false;
-
-document.addEventListener('mousemove', (e) => {
-  if (!ticking) {
-    ticking = true; 
-    window.requestAnimationFrame(() => {
-      document.body.style.setProperty('--x', e.clientX + 'px');
-      document.body.style.setProperty('--y', e.clientY + 'px');
-      ticking = false;
+  // Captura o carrossel de projetos pelo ID correto
+  const slider = document.getElementById('meuCarrossel');
+  if (slider) {
+    slider.scrollBy({
+      left: direction * 300, // Move 300px para a esquerda ou direita
+      behavior: 'smooth'     // Rolagem suave profissional
     });
   }
-});
-
-// Inicia o loop quando a página carregar
-window.addEventListener('load', iniciarLoopCertificados);
-
-// (Mantenha aqui as funções scrollSlider e o mousemove que você já tem)
-
-function scrollSlider(direction) {
-  var slider = document.getElementById('meuCarrossel');
-  slider.scrollBy({
-    left: direction * 300,
-    behavior: 'smooth'
-  });
 }
 
+// Efeito de Lanterna Seguidora (Performance Otimizada com RequestAnimationFrame)
 let ticking = false;
 
 document.addEventListener('mousemove', (e) => {
   if (!ticking) {
-    // Bloqueia novos disparos até que este frame seja desenhado
     ticking = true; 
-    
     window.requestAnimationFrame(() => {
       document.body.style.setProperty('--x', e.clientX + 'px');
       document.body.style.setProperty('--y', e.clientY + 'px');
-      
-      // Libera o próximo disparo APENAS depois que o frame rodou
       ticking = false; 
     });
   }

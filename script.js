@@ -1,10 +1,28 @@
-function scslider(direction) {
-  var slider = document.getElementById('Carrossel');
+function scrollSlider(direction) {
+  var slider = document.getElementById('meuCarrossel');
   slider.scrollBy({
     left: direction * 300,
     behavior: 'smooth'
   });
 }
+
+let ticking = false;
+
+document.addEventListener('mousemove', (e) => {
+  if (!ticking) {
+    ticking = true; 
+    window.requestAnimationFrame(() => {
+      document.body.style.setProperty('--x', e.clientX + 'px');
+      document.body.style.setProperty('--y', e.clientY + 'px');
+      ticking = false;
+    });
+  }
+});
+
+// Inicia o loop quando a página carregar
+window.addEventListener('load', iniciarLoopCertificados);
+
+// (Mantenha aqui as funções scrollSlider e o mousemove que você já tem)
 
 function scrollSlider(direction) {
   var slider = document.getElementById('meuCarrossel');

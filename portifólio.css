@@ -183,34 +183,51 @@ a:hover {
     scrollbar-width: none;  /* Firefox */
 }
 
+/* Container do letreiro */
+.infinite-ticker {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    padding: 20px 0;
+}
+
+/* O trilho que move as duas listas */
+.ticker-track {
+    display: flex;
+    gap: 15px; /* Espaço entre os certificados */
+    animation: scrollInfinito 25s linear infinite; 
+    padding-right: 15px; 
+}
+
+/* REMOVIDO: O código que pausava no hover foi retirado para o looping NUNCA parar */
+
+/* Mágica do Loop Infinito */
+@keyframes scrollInfinito {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
 
 .certificado-card {
-    min-width: 250px;
-    max-width: 250px;
-    height: 150px;
-    background: linear-gradient(
-    rgba(0, 0, 0, 0.7),
-    var(--color-background)
-   );
-    border-radius: 10px;
-    cursor: pointer;
+    min-width: 220px;  /* Largura controlada para não ficarem gigantes */
+    max-width: 220px;
+    height: 140px;     /* Altura proporcional e elegante */
+    background-image: var(--degrade-);
+    border-radius: 8px;
     position: relative;
-    transition: transform 0.4s ease, box-shadow 0.2s ease;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 15px;
+    padding: 12px;
     box-sizing: border-box;
-    overflow:hidden;
+    overflow: hidden;
 }
 
-/* Efeito de expansão do card (Efeito Netflix) */
-.certificado-card:hover {
-    transform: scale(1.20);
-    z-index: 10;
-}
-
-/* Imagem opcional de fundo do projeto */
+/* Ajuste da imagem dentro do card do certificado */
 .certificado-card img {
     position: absolute;
     top: 0;
@@ -218,26 +235,34 @@ a:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 2px;
-    opacity: 0.5;
-    transition: opacity 0.4s;
+    border-radius: 8px;
+    opacity: 0.5; /* Deixa sutil para aparecer o texto, e brilha no hover */
+    transition: opacity 0.3s ease;
+    z-index: 1;
 }
 
 .certificado-card:hover img {
-    opacity: 1;
+    opacity: 1; /* Imagem acende 100% quando passa o mouse */
 }
 
 .certificado-card:hover h3 {
     color: var(--color-background);
 }
 
+/* Pausa a animação quando o usuário passa o mouse */
+.infinite-ticker:hover .ticker-track {
+    animation-play-state: paused;
+}
 
 /* O Card do Projeto */
 .project-card {
     min-width: 250px;
     max-width: 250px;
     height: 150px;
-    background-image: var(--degrade-name);
+    background-image: linear-gradient(
+    rgba(0, 0, 0, 0.7),
+    var(--color-background)
+   );
     border-radius: 10px;
     cursor: pointer;
     position: relative;

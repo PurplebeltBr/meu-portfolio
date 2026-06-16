@@ -183,6 +183,52 @@ a:hover {
     scrollbar-width: none;  /* Firefox */
 }
 
+
+.certificado-card {
+    margin-bottom: 50px;
+    min-width: 250px;
+    max-width: 250px;
+    height: 150px;
+    background: linear-gradient(
+    rgba(0, 0, 0, 0.7),
+    var(--color-background)
+   );
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.4s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow:hidden;
+}
+
+/* Efeito de expansão do card (Efeito Netflix) */
+.certificado-card:hover {
+    transform: scale(1.20);
+    z-index: 10;
+}
+
+/* Imagem opcional de fundo do projeto */
+.certificado-card img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 2px;
+    opacity: 0.5;
+    transition: opacity 0.4s;
+}
+
+.certificado-card:hover img {
+    opacity: 1;
+}
+
+
 /* O Card do Projeto */
 .project-card {
     min-width: 250px;

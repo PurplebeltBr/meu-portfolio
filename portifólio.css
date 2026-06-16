@@ -185,7 +185,6 @@ a:hover {
 
 
 .certificado-card {
-    margin-bottom: 50px;
     min-width: 250px;
     max-width: 250px;
     height: 150px;
@@ -226,6 +225,10 @@ a:hover {
 
 .certificado-card:hover img {
     opacity: 1;
+}
+
+.certificado-card:hover h3 {
+    color: var(--color-background);
 }
 
 

@@ -257,6 +257,12 @@ a:hover {
     animation-play-state: paused;
 }
 
+.preview{
+  font-size: 10px;
+  color: var(--color-background);
+  font-weight: bold;
+}
+
 /* O Card do Projeto */
 .project-card {
     min-width: 250px;

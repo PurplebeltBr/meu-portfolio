@@ -23,3 +23,7 @@ document.addEventListener('mousemove', (e) => {
     });
   }
 });
+
+
+// Adiciona o script de analytics da Vercel dinamicamente na página
+import('/_vercel/insights/script.js');
